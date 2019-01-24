@@ -17,20 +17,18 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   itemCount: number;
 
   constructor(private productService: ProductService) {
-    this.start();
+    this.subscription = this.productService
+      .getProducts()
+      .subscribe(products => {
+        this.products = products;
+        this.initializeTable(products);
+      });
   }
 
   private initializeTable(products: Product[]) {
     this.tableResource = new DataTableResource(products);
     this.tableResource.query({ offset: 0 }).then(items => (this.items = items));
     this.tableResource.count().then(count => (this.itemCount = count));
-  }
-
-  private start() {
-    this.subscription = this.productService.getAll().subscribe(products => {
-      this.products = products;
-      this.initializeTable(products);
-    });
   }
 
   reloadItems(params) {

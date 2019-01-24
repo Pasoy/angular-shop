@@ -21,7 +21,7 @@ export class ProductService {
     return this.db.object('/products/' + productId).remove();
   }
 
-  getAll() {
+  getProducts() {
     return this.db
       .list<Product>('/products')
       .snapshotChanges()
