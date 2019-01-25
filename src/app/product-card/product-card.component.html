@@ -1,0 +1,18 @@
+<div class="card" style="width: 16rem;">
+  <img
+    *ngIf="product.imageUrl"
+    [src]="product.imageUrl"
+    class="card-img-top"
+    alt="{{ product.title }}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">
+      Price: {{ product.price | currency: 'EUR' }} <br />
+      Episodes: {{ product.episodes }}
+    </p>
+    <div *ngIf="showActions" class="card-footer">
+      <a routerLink="/" class="btn btn-primary btn-block">Yeet</a>
+    </div>
+  </div>
+</div>
